@@ -22,6 +22,7 @@ interface Presentation {
         <th scope="col">Opis</th>
         <th scope="col">Autor</th>
         <th scope="col"></th>
+        <th scope="col"></th>
       </tr>
       </thead>
       <tbody>
@@ -33,6 +34,7 @@ interface Presentation {
         <td>{{ presentation.description  }}</td>
         <td>{{ presentation.author}}</td>
         <td><a href="/edit">Edycja</a></td>
+        <td><a href="/remove">Usuń</a></td>
       </tr>
       </tbody>
     </table>
