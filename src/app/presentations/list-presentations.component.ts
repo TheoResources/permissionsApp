@@ -30,8 +30,8 @@ interface Presentation {
         </td>
         <td>{{ presentation.description  }}</td>
         <td>{{ presentation.author}}</td>
-        <td><a href="/edit">Edycja</a></td>
-        <td><a href="/remove">Usuń</a></td>
+        <td><a routerLink="/edit">Edycja</a></td>
+        <td><a routerLink="/remove">Usuń</a></td>
       </tr>
       </tbody>
     </table>
