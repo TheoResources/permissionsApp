@@ -19,6 +19,27 @@ export class AuthorizationService {
     this.oauthService.tokenValidationHandler = new JwksValidationHandler();
   }
 
+  login(): Promise<void> {
+    return this.oauthService.loadDiscoveryDocument().then(doc => {
+      this.oauthService.tryLogin({
+        onTokenReceived: context => {
+          this.roles = this.getRolesFromToken();
+        }
+      }).then(() => {
+        if (!this.oauthService.hasValidAccessToken()) {
+          this.oauthService.initImplicitFlow();
+        } else {
+          this.roles = this.getRolesFromToken();
+        }
+      });
+    });
+  }
+
+  logout() {
+    this.oauthService.logOut();
+  }
+
+
   hasReadOnlyRole() {
     return this.roles.includes('ReadOnly');
   }
@@ -39,30 +60,8 @@ export class AuthorizationService {
     return this.roles.includes(role);
   }
 
-  login(): Promise<void> {
-    return this.oauthService.loadDiscoveryDocument().then(doc => {
-      this.oauthService.tryLogin(
-        {
-          onTokenReceived: context => {
-            this.roles = JSON.parse(window.atob(this.oauthService.getAccessToken().split('.')[1])).roles;
-          }
-        }
-      )
-        .catch(err => {
-          console.error(err);
-        })
-        .then(() => {
-          if (!this.oauthService.hasValidAccessToken()) {
-            this.oauthService.initImplicitFlow();
-          } else {
-            this.roles = JSON.parse(window.atob(this.oauthService.getAccessToken().split('.')[1])).roles;
-          }
-        });
-    });
-  }
-
-  logout() {
-    this.oauthService.logOut();
+  private getRolesFromToken(): string[] {
+    return JSON.parse(window.atob(this.oauthService.getAccessToken().split('.')[1])).roles;
   }
 
 }
