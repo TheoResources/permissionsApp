@@ -27,12 +27,16 @@ export class AuthorizationService {
     return this.roles.includes('WriteAll');
   }
 
-  hasAnyRole() {
-    return this.hasReadOnlyRole() || this.hasWriteAllRole();
+  isAuthenticated() {
+    return this.oauthService.hasValidAccessToken() && (this.hasReadOnlyRole() || this.hasWriteAllRole());
   }
 
   getRoles() {
     return this.roles;
+  }
+
+  hasRole(role: string): boolean {
+    return this.roles.includes(role);
   }
 
   login(): Promise<void> {

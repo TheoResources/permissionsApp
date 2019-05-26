@@ -4,14 +4,9 @@ import {APP_INITIALIZER, NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {ListPresentationsComponent} from './presentations/list-presentations.component';
-import {RouterModule, Routes} from '@angular/router';
 import {OAuthModule} from 'angular-oauth2-oidc';
 import {HttpClientModule} from '@angular/common/http';
-import {AuthorizationService} from './oauth/AuthorizationService';
-
-const appRoutes: Routes = [
-  {path: 'list', component: ListPresentationsComponent}
-];
+import {AuthorizationService} from './auth/authorization.service';
 
 export function onAppInitOAuth(authorizationService: AuthorizationService): () => Promise<any> {
   return () => authorizationService.login();
@@ -23,7 +18,6 @@ export function onAppInitOAuth(authorizationService: AuthorizationService): () =
     ListPresentationsComponent
   ],
   imports: [
-    RouterModule.forRoot(appRoutes),
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
