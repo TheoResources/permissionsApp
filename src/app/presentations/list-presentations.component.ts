@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {AuthorizationService} from '../auth/authorization.service';
 
 
 interface Presentation {
@@ -30,7 +31,7 @@ interface Presentation {
         </td>
         <td>{{ presentation.description  }}</td>
         <td>{{ presentation.author}}</td>
-        <td><a routerLink="/edit">Edycja</a></td>
+        <td><a routerLink="/edit" *ngIf="authorizationService.hasWriteAllRole()">Edycja</a></td>
         <td><a routerLink="/remove">Usuń</a></td>
       </tr>
       </tbody>
@@ -59,4 +60,8 @@ export class ListPresentationsComponent {
     }
   ] as Presentation[];
 
+
+  constructor(private authorizationService: AuthorizationService) {
+
+  }
 }
