@@ -12,9 +12,12 @@ export class WriteAllRoleDirective implements OnInit {
   }
 
   ngOnInit(): void {
-    if (this.authorizationService.hasWriteAllRole()) {
-      this.vcr.clear();
+    if (!this.authorizationService.hasWriteAllRole()) {
+      // If condition is true add template to DOM
       this.vcr.createEmbeddedView(this.tpl);
+    } else {
+      // Else remove template from DOM
+      this.vcr.clear();
     }
   }
 
