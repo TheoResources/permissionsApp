@@ -31,8 +31,8 @@ interface Presentation {
         </td>
         <td>{{ presentation.description  }}</td>
         <td>{{ presentation.author}}</td>
-        <td><a routerLink="/edit" *ngIf="authorizationService.hasWriteAllRole()">Edycja</a></td>
-        <td><a routerLink="/remove">Usuń</a></td>
+        <td><a routerLink="/edit" *ngIf="authorizationService.hasReadOnlyRole()">Edycja</a></td>
+        <td><a routerLink="/remove" *appWriteAll>Usuń</a></td>
       </tr>
       </tbody>
     </table>
