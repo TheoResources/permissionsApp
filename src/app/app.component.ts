@@ -5,10 +5,10 @@ import {AuthorizationService} from './auth/authorization.service';
 @Component({
   selector: 'app-root',
   template: `
-    <h1>Panel administracyjny
-      <span *ngIf="authorizationService.isAuthenticated()">(twoje uprawnienia to: {{authorizationService.getRoles()}})</span>
-    </h1>
     <ng-container *ngIf="authorizationService.isAuthenticated()">
+      <h1>Panel administracyjny
+        <span>(twoje uprawnienia to: {{authorizationService.getRoles()}})</span>
+      </h1>
       <button (click)="authorizationService.logout()"
               type="button"
               class="btn btn-outline-secondary mr-2">Logout
