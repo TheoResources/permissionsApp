@@ -5,7 +5,7 @@ import {Injectable} from '@angular/core';
 export const authConfig: AuthConfig = {
   issuer: 'https://dev-128554.okta.com/oauth2/default',
   redirectUri: window.location.origin,
-  clientId: '?'
+  clientId: '0oamrm4qsW0zl5zfD356'
 };
 
 @Injectable({
