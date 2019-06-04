@@ -8,6 +8,7 @@ import {OAuthModule} from 'angular-oauth2-oidc';
 import {HttpClientModule} from '@angular/common/http';
 import {AuthorizationService} from './auth/authorization.service';
 import {WriteAllRoleDirective} from './auth/write-all-role.directive';
+import {EditPresentationsComponent} from './presentations/edit-presentations.component';
 
 export function onAppInitOAuth(authorizationService: AuthorizationService): () => Promise<any> {
   return () => authorizationService.login();
@@ -17,7 +18,8 @@ export function onAppInitOAuth(authorizationService: AuthorizationService): () =
   declarations: [
     AppComponent,
     ListPresentationsComponent,
-    WriteAllRoleDirective
+    WriteAllRoleDirective,
+    EditPresentationsComponent
   ],
   imports: [
     BrowserModule,
