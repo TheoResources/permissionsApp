@@ -19,8 +19,7 @@ interface Presentation {
         <th scope="col">Nazwa</th>
         <th scope="col">Opis</th>
         <th scope="col">Autor</th>
-        <th scope="col"></th>
-        <th scope="col"></th>
+        <th scope="col">Akcje</th>
       </tr>
       </thead>
       <tbody>
@@ -31,8 +30,7 @@ interface Presentation {
         </td>
         <td>{{ presentation.description  }}</td>
         <td>{{ presentation.author}}</td>
-        <td><a routerLink="/edit" *ngIf="authorizationService.hasReadOnlyRole()">Edycja</a></td>
-        <td><a routerLink="/remove" *appWriteAll>Usuń</a></td>
+        <td><a routerLink="/edit" *appWriteAll>Edytuj</a></td>
       </tr>
       </tbody>
     </table>
